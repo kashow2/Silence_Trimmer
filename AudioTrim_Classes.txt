@@ -1,0 +1,39 @@
+# Fill in the appropriate sections for the course name (replace "BP", "Yamantaka"),
+# language of translation, artist- lecturer, 
+# album -  course_location
+# and genre - program details in respective language.
+#
+# You can add more courses if you need! Simply copy-paste one of these segments and replace all items.
+# Make sure to keep the "language", "artist", "album", and "genre" exactly as such.
+# Each full course starts with "COURSE": {-- and goes until the last --} on it's own line.
+# Make sure to add a comma after the last --} unless it's the last course.
+#
+# If you have more or less "languages", you can simply add or remove from within the brackets, 
+# but don't remove the brackets.
+
+nested_classes = {
+	"BP": {
+		"language": ["EN", "TB", "FR", "SP"],
+
+		"artist": "Geshe Jamphel",
+
+		"album": "BP_Nalanda",
+
+		"genre": [
+			"Nalanda Monastery - Basic Program", 
+			"Nalanda Monastery - BP",
+			"Monastere Nalanda - PEBA",
+			"Monasterio Nalanda - PB"
+			]
+	},
+
+	"Yamantaka": {
+		"language": ["EN", "TB", "FR", "SP"],
+
+		"artist": "Geshe Gyalsten",
+
+		"album": "Yamantaka_Nalanda",
+
+		"genre": ["Yamantaka", "Yamantaka", "Yamantaka", "Yamantaka"]
+	}
+}

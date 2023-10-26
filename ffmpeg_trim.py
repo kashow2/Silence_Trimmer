@@ -1,0 +1,73 @@
+#import pip
+#pip.main(['install', 'ffmpeg-python'])  needed to use pip to install ffmpeg
+
+import subprocess
+import ffmpeg
+
+import pathlib
+import os
+import datetime
+
+# Define path of txt file with class settings
+file_path = r"C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\AudioTrim_Classes.txt"
+
+# Open the text file in read mode
+with open(file_path, 'r') as file:
+    # Load the data into a Python dictionary and execute code
+    data = file.read()
+    exec(data) #pops out a nested_classes variable with all the classes information
+
+
+directory = r'C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\test_files'  # input file path
+directory_out = r"C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\trimmed_files"  # output file path
+
+def trim_silence(directory, directory_out, course):
+
+    file_list = []
+    for filename in os.listdir(directory):
+        files = os.path.join(directory, filename)
+        # Add every file in directory to a list
+        if os.path.isfile(files):
+            file_list += [files]
+
+    for input_audio in file_list:
+        # Establishing name of file for export
+        name_pre = input_audio.split('\\')
+        name_split = name_pre[-1].split('.')
+        name = name_split[0]
+        print(name)
+        if name == "desktop":
+            pass
+        else:
+            
+            genre = []
+            language = []
+            # Metadata values
+            for lang in nested_classes[course]["language"]:
+                if lang in name:
+                    index = nested_classes[course]["language"].index(lang)
+                    genre.append(nested_classes[course]["genre"][index])
+                    language.append(lang)
+            artist = nested_classes[course]["artist"]
+            album = nested_classes[course]["album"]
+            print(language)
+            # Get the timestamp of the last modification of input file
+            timestamp = os.path.getmtime(input_audio)
+
+            # Convert the timestamp to a readable date and time
+            modified_time = datetime.datetime.fromtimestamp(timestamp)
+
+            # Formatted date time to YYYY-MM-DD
+            title = modified_time.strftime("%Y-%m-%d") + "_" + language[0]
+
+            # ffmpeg commands to first filter out silence (-33 dB, min_duration = 3s), add metadata, and convert wav to mp3
+            ffmpeg_command = [
+                'ffmpeg', '-i', input_audio,
+                '-af', 'silenceremove=stop_periods=-1:stop_duration=4:stop_threshold=-40dB:start_periods=1:start_duration=0.07:start_threshold=-40dB',
+                '-metadata', f'title={title}',
+                '-metadata', f'artist={artist}',
+                '-metadata', f'album={album}',
+                '-metadata', f'genre={genre[0]}',
+                f"{directory_out}\\{name}_trimmed.mp3"
+            ]
+            subprocess.run(ffmpeg_command)
