@@ -1,0 +1,15 @@
+ffmpeg_trim --- script that performs the silence trimming from audio files.
+  Uses a function trim_silence which takes three arguments, the directory input folder, the directory output folder and the course associated with the audio files.
+
+dashboard --- main executable script that will open a dashboard prompting users to select the input folder with all audio files of interest,
+  the output folder to save resulting files and allow the user to render the audio!
+  Uses tkinter library for the dashboard creation.
+
+AudioTrim_Classes --- text file with nested dictionary holding the metadata information associated with the audio files desired to be trimmed.
+
+
+IMPORTANT NOTES:
+-  Need to place the input and output folders for the audio files within the same working directory of this program, along with both programs and the Classes.txt file.
+-  Must download ffmpeg.exe from the web (https://ffmpeg.org/download.html) and place ffmpeg.exe, ffplay.exe and ffprobe.exe into your working Path.
+-  [On Windows] Your Path can be found by searching Path in the Windows search bar, navigating to the Advanced tab of system properties and going into Environmental Variables.
+-  On line 11 of the dashboard.py script, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file! 
