@@ -15,7 +15,7 @@
 
 
 **IMPORTANT NOTES:**
-1. Must download ffmpeg.exe from the web ([Link Text](https://ffmpeg.org/download.html)) and 
+1. Must download ffmpeg.exe from the web ([ffmpeg](https://ffmpeg.org/download.html)) and 
    place ffmpeg.exe, ffplay.exe and ffprobe.exe into your working Path.
 > [On Windows] Your Path can be found by searching Path in the Windows search bar, navigating to the Advanced tab of system properties and going into Environmental Variables.
 2. On both dashboard.py and ffmpeg_trim.py, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file! 
