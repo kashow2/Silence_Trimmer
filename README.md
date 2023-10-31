@@ -13,10 +13,25 @@
 - AudioTrim_Classes --- modifiable text file holding metadata information
 > Nested dictionary with information associated with the audio files desired to be trimmed.
 
+---
 
-**IMPORTANT NOTES:**
-1. Must download ffmpeg.exe from the web ([ffmpeg](https://ffmpeg.org/download.html)) and 
+**INSTALLATION INSTRUCTIONS:**
+1. Download ffmpeg.exe from the web ([ffmpeg](https://ffmpeg.org/download.html)) and 
    place ffmpeg.exe, ffplay.exe and ffprobe.exe into your working Path.
-> [On Windows] Your Path can be found by searching Path in the Windows search bar, navigating to the Advanced tab of system properties and going into Environmental Variables.
-2. On both dashboard.py and ffmpeg_trim.py, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file! 
-> line 11 on dashboard.py & line 12 on ffmpeg_trim.py
+   
+&nbsp;&nbsp;&nbsp;&nbsp; - [*On Windows*] Your Path can be found by searching Path in the Windows search bar, navigating to the Advanced tab of 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system properties and going into Environmental Variables.
+
+2. Install ffmpeg and tk (tkinter) into your virtual environment.
+
+&nbsp;&nbsp;&nbsp;&nbsp; - You can use pip to install these packages. Make sure you're upgraded to the most recent pip version
+ 
+ ```python
+ python -m pip install --upgrade pip
+ pip install ffmpeg
+ pip install tk
+ ```
+
+3. On both dashboard.py and ffmpeg_trim.py, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file!
+   
+&nbsp;&nbsp;&nbsp;&nbsp; - line 11 on dashboard.py & line 12 on ffmpeg_trim.py
