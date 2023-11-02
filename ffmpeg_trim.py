@@ -1,5 +1,5 @@
-#import pip
-#pip.main(['install', 'ffmpeg-python'])  needed to use pip to install ffmpeg
+# import pip
+# pip.main(['install', 'ffmpeg-python'])  needed to use pip to install ffmpeg
 
 import subprocess
 import ffmpeg
@@ -15,16 +15,26 @@ file_path = r"C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\AudioTrim_Classe
 with open(file_path, 'r') as file:
     # Load the data into a Python dictionary and execute code
     data = file.read()
-    exec(data) #pops out a nested_classes variable with all the classes information
+    exec(data)  # pops out a nested_classes variable with all the classes information
 
-
-def trim_silence(directory, directory_out, course):
+n_files = []
+def trim_silence(directory, directory_out, course, n_files):
+    n = 0
     file_list = []
+
+    # Iterate through directory and add every file in directory to a list
     for filename in os.listdir(directory):
         files = os.path.join(directory, filename)
-        # Add every file in directory to a list
         if os.path.isfile(files):
             file_list += [files]
+
+    # Count the number of files in the file_list, ignore desktop.ini files
+    for i in file_list:
+        if "desktop" in i:
+            pass
+        else:
+            n += 1
+    n_files.append(n)
 
     for input_audio in file_list:
         # Establishing name of file for export
@@ -63,7 +73,8 @@ def trim_silence(directory, directory_out, course):
             # ffmpeg commands to first filter out silence (-33 dB, min_duration = 3s), add metadata, and convert wav to mp3
             ffmpeg_command = [
                 'ffmpeg', '-i', input_audio,
-                '-af', 'silenceremove=stop_periods=-1:stop_duration=4:stop_threshold=-40dB:start_periods=1:start_duration=0.07:start_threshold=-40dB',
+                '-af',
+                'silenceremove=stop_periods=-1:stop_duration=4:stop_threshold=-40dB:start_periods=1:start_duration=0.07:start_threshold=-40dB',
                 '-metadata', f'title={title}',
                 '-metadata', f'artist={artist}',
                 '-metadata', f'album={album}',

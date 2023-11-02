@@ -7,6 +7,7 @@ import ffmpeg
 import pathlib
 import os
 from ffmpeg_trim import trim_silence
+
 import datetime
 import time
 import json
@@ -28,7 +29,7 @@ label = tk.Label(root, text="Silence Trimming Tool", font=("Helvetica", 16, "bol
 label.pack(side=TOP, padx=10, pady=10)  # Add padding around the label
 
 # Create a label for the subtitle
-subtitle_label = tk.Label(root, text="1. Select the class you want to render audio for",
+subtitle_label = tk.Label(root, text="1. Select the class you want to render audio for.",
                           font=("Helvetica", 12))
 subtitle_label.pack(pady=1)  # Add padding below the subtitle label
 
@@ -88,20 +89,29 @@ selected_var = tk.StringVar()
 selected_var.set(options[0])  # Default selected option
 
 # Create the dropdown menu
+dropdown_menu_label = tk.Label(root, text="Class:")
+dropdown_menu_label.pack(padx=5, pady=(15,1))
 dropdown_menu = tk.OptionMenu(root, selected_var, *options)
-dropdown_menu.pack(pady=10)
+dropdown_menu.configure(fg="red")
+dropdown_menu.pack(pady=(1,10))
 
-
+num = []
 # Last audio render button
 def render_button_click():
     if directory:  # if Browse Folders was utilized
-        trim_silence(directory[-1], directory_out[-1], selected_var.get())
+        trim_silence(directory[-1], directory_out[-1], selected_var.get(), num)
     else:  # if Selected Settings were utilized
         selected_setting = app.get_selected_preferred_name()
         keys = list(selected_setting.keys())
         values = list(selected_setting.values())
-        trim_silence(keys[0], values[0], selected_var.get())
+        trim_silence(keys[0], values[0], selected_var.get(), num)
     label.config(text="Audio Rendered!")
+
+    # Creating a pop-up window
+    popup_window = tk.Toplevel(root)
+    popup_window.title("Render Done")
+    popup_label = tk.Label(popup_window, text=f"{num} files rendered!", font=("Courier New", 16, "bold"))
+    popup_label.pack()
 
 # Create the Render Audio button widget
 button = tk.Button(root, text="Render Audio", fg='red', font=("Arial", 10, "bold"), command=render_button_click)
@@ -137,26 +147,27 @@ class SaveSettings(tk.Frame):
 
         # Label for the Entry widget
         self.name_label = tk.Label(self, text="Enter Folder Settings Name:")
-        self.name_label.pack(padx=5, pady=5, side=LEFT)
+        self.name_label.pack(padx=10, pady=(5,1))
 
         # Entry widget for user to enter the preferred name
         self.name_entry = tk.Entry(self)
-        self.name_entry.pack(padx=10, pady=10, side=LEFT)
+        self.name_entry.pack(padx=3, pady=(1,5))
+
+        # Create a button to save settings
+        self.save_button = tk.Button(self, text="Save Settings", command=self.save_settings)
+        self.save_button.pack(padx=10, pady=(1,15))
+
+        # Label for settings options dropdown menu
+        self.preferred_name_label = tk.Label(self, text="Saved Settings:")
+        self.preferred_name_label.pack(padx=10, pady=(10,1))
 
         # Dropdown menu to select preferred name
         self.preferred_name_var = tk.StringVar()
         self.preferred_name_var.set(list(self.settings.keys())[0] if self.settings else "")
         self.preferred_name_menu = tk.OptionMenu(self, self.preferred_name_var, *self.settings.keys())
-        self.preferred_name_menu.pack(padx=10, pady=10)
+        self.preferred_name_menu.configure(fg="red")
+        self.preferred_name_menu.pack(padx=3, pady=(1,10))
 
-        # Create a label to display the selected folder path
-        self.folder_path = tk.StringVar()
-        self.folder_label = tk.Label(self, textvariable=self.folder_path)
-        self.folder_label.pack(padx=10, pady=10)
-
-        # Create a button to save settings
-        self.save_button = tk.Button(self, text="Save Settings", command=self.save_settings)
-        self.save_button.pack(padx=10, pady=10, side=BOTTOM)
 
     # Method to get the selected preferred name from outside the class
     def get_selected_preferred_name(self):
