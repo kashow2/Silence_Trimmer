@@ -36,15 +36,14 @@ def trim_silence(directory, directory_out, course):
         else:
             true_name = name_split[0]
 
-        if name == "desktop":
+        if true_name == "desktop":
             pass
         else:
-            
             genre = []
             language = []
             # Metadata values
             for lang in nested_classes[course]["language"]:
-                if lang in name:
+                if lang in true_name:
                     index = nested_classes[course]["language"].index(lang)
                     genre.append(nested_classes[course]["genre"][index])
                     language.append(lang)
