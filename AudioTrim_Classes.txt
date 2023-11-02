@@ -35,5 +35,21 @@ nested_classes = {
 		"album": "Yamantaka_Nalanda",
 
 		"genre": ["Yamantaka", "Yamantaka", "Yamantaka", "Yamantaka"]
+	},
+
+	"MP": {
+		"language": ["EN", "TB", "FR", "SP"],
+
+		"artist": "Geshe Gyalsten",
+
+		"album": "MP_Nalanda",
+
+		"genre": [
+			"Nalanda Monastery - Masters Program",
+			"Nalanda Monastery - MP",
+			"Monastere Nalanda - MP",
+			"Monasterio Nalanda - MP"
+			],
+		"short_name":"MP"
 	}
 }

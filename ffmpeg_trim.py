@@ -18,11 +18,7 @@ with open(file_path, 'r') as file:
     exec(data) #pops out a nested_classes variable with all the classes information
 
 
-directory = r'C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\test_files'  # input file path
-directory_out = r"C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\trimmed_files"  # output file path
-
 def trim_silence(directory, directory_out, course):
-
     file_list = []
     for filename in os.listdir(directory):
         files = os.path.join(directory, filename)
@@ -34,8 +30,12 @@ def trim_silence(directory, directory_out, course):
         # Establishing name of file for export
         name_pre = input_audio.split('\\')
         name_split = name_pre[-1].split('.')
-        name = name_split[0]
-        print(name)
+        if "_" in name_split[0]:
+            rename = name_split[0]
+            true_name = rename.split("_")[0]
+        else:
+            true_name = name_split[0]
+
         if name == "desktop":
             pass
         else:
@@ -50,7 +50,8 @@ def trim_silence(directory, directory_out, course):
                     language.append(lang)
             artist = nested_classes[course]["artist"]
             album = nested_classes[course]["album"]
-            print(language)
+            short_name = nested_classes[course]["short_name"]
+
             # Get the timestamp of the last modification of input file
             timestamp = os.path.getmtime(input_audio)
 
@@ -68,6 +69,6 @@ def trim_silence(directory, directory_out, course):
                 '-metadata', f'artist={artist}',
                 '-metadata', f'album={album}',
                 '-metadata', f'genre={genre[0]}',
-                f"{directory_out}\\{name}_trimmed.mp3"
+                f"{directory_out}\\{short_name}_{language[0]}_{modified_time.strftime('%m-%d-%Y')}.mp3"
             ]
             subprocess.run(ffmpeg_command)
