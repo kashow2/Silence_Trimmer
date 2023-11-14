@@ -148,9 +148,6 @@ class SaveSettings(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        # Dictionary to store settings for each preferred name, default on first use
-        self.settings = {"None": {"path": "None"}}
-
         # Load settings from file (if available)
         self.settings = load_settings_from_file()
 

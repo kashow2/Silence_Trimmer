@@ -24,7 +24,9 @@ nested_classes = {
 			"Nalanda Monastery - BP",
 			"Monastere Nalanda - PEBA",
 			"Monasterio Nalanda - PB"
-			]
+			],
+
+        "short_name": "BP"
 	},
 
 	"Yamantaka": {
@@ -34,7 +36,9 @@ nested_classes = {
 
 		"album": "Yamantaka_Nalanda",
 
-		"genre": ["Yamantaka", "Yamantaka", "Yamantaka", "Yamantaka"]
+		"genre": ["Yamantaka", "Yamantaka", "Yamantaka", "Yamantaka"],
+
+		"short_name": "YAM"
 	},
 
 	"MP": {
