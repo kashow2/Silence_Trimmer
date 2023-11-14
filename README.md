@@ -21,13 +21,13 @@
 ---
 
 **INSTALLATION INSTRUCTIONS:**
-1. Download this code as a zip file and extract it into a working project folder. **OR** clone the repository using the following command into your terminal.
+**1**. Download this code as a zip file and extract it into a working project folder. **OR** clone the repository using the following command into your terminal.
 
  ```bash
  git clone https://github.com/kashow2/Silence_Trimmer
  ```
 
-2. Create a virtual environment in this working folder and install requirements.txt to install ffmpeg and tk (tkinter)into your venv.
+**2**. Create a virtual environment in this working folder and install requirements.txt to install ffmpeg and tk (tkinter) into your venv.
 
 &nbsp;&nbsp;&nbsp;&nbsp; - You can use pip to install these packages. Make sure you're upgraded to the most recent pip version
  
@@ -35,12 +35,12 @@
  pip install -r requirements.txt
  ```
 
-3. Download ffmpeg.exe from the web ([ffmpeg](https://ffmpeg.org/download.html)) and 
+**3**. Download ffmpeg.exe from the web ([ffmpeg](https://ffmpeg.org/download.html)) and 
    place ffmpeg.exe, ffplay.exe and ffprobe.exe into your working Path.
    
 &nbsp;&nbsp;&nbsp;&nbsp; - [*On Windows*] Your Path can be found by searching Path in the Windows search bar, navigating to the Advanced tab of 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system properties and going into Environmental Variables.
 
-4. On both dashboard.py and ffmpeg_trim.py, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file!
+**4**. On both dashboard.py and ffmpeg_trim.py, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file!
    
 &nbsp;&nbsp;&nbsp;&nbsp; - line 11 on dashboard.py & line 12 on ffmpeg_trim.py
