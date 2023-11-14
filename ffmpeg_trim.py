@@ -18,23 +18,17 @@ with open(file_path, 'r') as file:
     exec(data)  # pops out a nested_classes variable with all the classes information
 
 n_files = []
+
+
 def trim_silence(directory, directory_out, course, n_files):
     n = 0
     file_list = []
 
-    # Iterate through directory and add every file in directory to a list
+    # Iterate through input directory and add every file in directory to a list
     for filename in os.listdir(directory):
         files = os.path.join(directory, filename)
         if os.path.isfile(files):
             file_list += [files]
-
-    # Count the number of files in the file_list, ignore desktop.ini files
-    for i in file_list:
-        if "desktop" in i:
-            pass
-        else:
-            n += 1
-    n_files.append(n)
 
     for input_audio in file_list:
         # Establishing name of file for export
@@ -49,6 +43,7 @@ def trim_silence(directory, directory_out, course, n_files):
         if true_name == "desktop":
             pass
         else:
+            n += 1
             genre = []
             language = []
             # Metadata values
@@ -70,7 +65,17 @@ def trim_silence(directory, directory_out, course, n_files):
             # Formatted date time to YYYY-MM-DD
             title = modified_time.strftime("%Y-%m-%d") + "_" + language[0]
 
-            # ffmpeg commands to first filter out silence (-33 dB, min_duration = 3s), add metadata, and convert wav to mp3
+            output = directory_out
+            for item in os.listdir(directory_out):
+                path_item = os.path.join(directory_out, item)
+                if os.path.isdir(path_item):
+                    if language[0] in item:
+                        output = path_item
+                        break
+                    else:
+                        pass
+
+            # ffmpeg commands to first filter out silence (-33 dB, min_duration = 3s), add metadata, convert wav to mp3
             ffmpeg_command = [
                 'ffmpeg', '-i', input_audio,
                 '-af',
@@ -79,6 +84,8 @@ def trim_silence(directory, directory_out, course, n_files):
                 '-metadata', f'artist={artist}',
                 '-metadata', f'album={album}',
                 '-metadata', f'genre={genre[0]}',
-                f"{directory_out}\\{short_name}_{language[0]}_{modified_time.strftime('%m-%d-%Y')}.mp3"
+                f"{output}\\{short_name}_{language[0]}_{modified_time.strftime('%m-%d-%Y')}.mp3"
             ]
             subprocess.run(ffmpeg_command)
+
+    n_files.append(n)

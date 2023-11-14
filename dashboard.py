@@ -34,7 +34,7 @@ subtitle_label = tk.Label(root, text="1. Select the class you want to render aud
 subtitle_label.pack(pady=1)  # Add padding below the subtitle label
 
 # Create a label for the subtitle
-subtitle_label = tk.Label(root, text="2. Browse for Input/Output folders OR select saved folder settings.",
+subtitle_label = tk.Label(root, text='2. Browse for Input/Output folders & save settings OR Select saved folder settings.',
                           font=("Helvetica", 12))
 subtitle_label.pack(pady=1)  # Add padding below the subtitle label
 
