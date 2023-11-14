@@ -21,6 +21,7 @@
 ---
 
 **INSTALLATION INSTRUCTIONS:**
+
 **1**. Download this code as a zip file and extract it into a working project folder. **OR** clone the repository using the following command into your terminal.
 
  ```bash
