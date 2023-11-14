@@ -9,7 +9,7 @@ import os
 import datetime
 
 # Define path of txt file with class settings
-file_path = r"C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\AudioTrim_Classes.txt"
+file_path = r"C:\Users\omark\PycharmProjects\Silence_Trimmer\AudioTrim_Classes.txt"
 
 # Open the text file in read mode
 with open(file_path, 'r') as file:

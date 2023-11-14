@@ -12,7 +12,7 @@ import datetime
 import time
 import json
 
-file_path = r"C:\Users\omark\PycharmProjects\Nalanda_Audio_Trim\AudioTrim_Classes.txt" #txt file with class settings
+file_path = r"C:\Users\omark\PycharmProjects\Silence_Trimmer\AudioTrim_Classes.txt"  # txt file with class settings
 
 # Open the AudioTrim_Classes text file in read mode
 with open(file_path, 'r') as file:
@@ -34,12 +34,14 @@ subtitle_label = tk.Label(root, text="1. Select the class you want to render aud
 subtitle_label.pack(pady=1)  # Add padding below the subtitle label
 
 # Create a label for the subtitle
-subtitle_label = tk.Label(root, text='2. Browse for Input/Output folders & save settings OR Select saved folder settings.',
+subtitle_label = tk.Label(root,
+                          text='2. Browse for Input/Output folders & save settings OR Select saved folder settings.',
                           font=("Helvetica", 12))
 subtitle_label.pack(pady=1)  # Add padding below the subtitle label
 
-
 directory = []
+
+
 # Opens input folder dialog button
 def open_input_folder_dialog():
     folder_path = filedialog.askdirectory()
@@ -50,6 +52,7 @@ def open_input_folder_dialog():
         input_folder_label.config(text="No folder selected")
     directory.append(folder_path.replace("/", "\\"))
 
+
 # Input folder selection dialog button
 input_button = tk.Button(root, text="Browse Input Audio Folder", command=open_input_folder_dialog)
 input_button.pack(side=LEFT)
@@ -58,8 +61,9 @@ input_button.pack(side=LEFT)
 input_folder_label = tk.Label(root, text="")
 input_folder_label.pack(side=LEFT, pady=50)
 
-
 directory_out = []
+
+
 # Opens output folder selection dialog
 def open_output_folder_dialog():
     folder_path = filedialog.askdirectory()
@@ -70,6 +74,7 @@ def open_output_folder_dialog():
         output_folder_label.config(text="No folder selected")
     directory_out.append(folder_path.replace("/", "\\"))
 
+
 # Output folder selection dialog button
 output_button = tk.Button(root, text="Browse Output Audio Folder", command=open_output_folder_dialog)
 output_button.pack(side=RIGHT)
@@ -77,7 +82,6 @@ output_button.pack(side=RIGHT)
 # Label to display the selected output folder path
 output_folder_label = tk.Label(root, text="")
 output_folder_label.pack(side=RIGHT, pady=50)
-
 
 # Options for the dropdown menu
 options = []
@@ -90,12 +94,14 @@ selected_var.set(options[0])  # Default selected option
 
 # Create the dropdown menu
 dropdown_menu_label = tk.Label(root, text="Class:")
-dropdown_menu_label.pack(padx=5, pady=(15,1))
+dropdown_menu_label.pack(padx=5, pady=(15, 1))
 dropdown_menu = tk.OptionMenu(root, selected_var, *options)
 dropdown_menu.configure(fg="red")
-dropdown_menu.pack(pady=(1,10))
+dropdown_menu.pack(pady=(1, 10))
 
 num = []
+
+
 # Last audio render button
 def render_button_click():
     if directory:  # if Browse Folders was utilized
@@ -113,14 +119,17 @@ def render_button_click():
     popup_label = tk.Label(popup_window, text=f"{num} files rendered!", font=("Courier New", 16, "bold"))
     popup_label.pack()
 
+
 # Create the Render Audio button widget
 button = tk.Button(root, text="Render Audio", fg='red', font=("Arial", 10, "bold"), command=render_button_click)
 button.pack(side=BOTTOM)
+
 
 # Function to save settings to a JSON file
 def save_settings_to_file(settings_dict):
     with open("settings.json", "w") as json_file:
         json.dump(settings_dict, json_file)
+
 
 # Function to load settings from a JSON file
 def load_settings_from_file():
@@ -147,27 +156,26 @@ class SaveSettings(tk.Frame):
 
         # Label for the Entry widget
         self.name_label = tk.Label(self, text="Enter Folder Settings Name:")
-        self.name_label.pack(padx=10, pady=(5,1))
+        self.name_label.pack(padx=10, pady=(5, 1))
 
         # Entry widget for user to enter the preferred name
         self.name_entry = tk.Entry(self)
-        self.name_entry.pack(padx=3, pady=(1,5))
+        self.name_entry.pack(padx=3, pady=(1, 5))
 
         # Create a button to save settings
         self.save_button = tk.Button(self, text="Save Settings", command=self.save_settings)
-        self.save_button.pack(padx=10, pady=(1,15))
+        self.save_button.pack(padx=10, pady=(1, 15))
 
         # Label for settings options dropdown menu
         self.preferred_name_label = tk.Label(self, text="Saved Settings:")
-        self.preferred_name_label.pack(padx=10, pady=(10,1))
+        self.preferred_name_label.pack(padx=10, pady=(10, 1))
 
         # Dropdown menu to select preferred name
         self.preferred_name_var = tk.StringVar()
         self.preferred_name_var.set(list(self.settings.keys())[0] if self.settings else "")
         self.preferred_name_menu = tk.OptionMenu(self, self.preferred_name_var, *self.settings.keys())
         self.preferred_name_menu.configure(fg="red")
-        self.preferred_name_menu.pack(padx=3, pady=(1,10))
-
+        self.preferred_name_menu.pack(padx=3, pady=(1, 10))
 
     # Method to get the selected preferred name from outside the class
     def get_selected_preferred_name(self):
