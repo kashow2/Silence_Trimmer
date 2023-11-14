@@ -196,7 +196,6 @@ class SaveSettings(tk.Frame):
         save_settings_to_file(self.settings)
         print(f"Settings saved for {preferred_name}!")
 
-
 if __name__ == "__main__":
     app = SaveSettings(master=root)  # Or pass your existing instance as master
     app.mainloop()

@@ -1,6 +1,5 @@
 # Fill in the appropriate sections for the course name (replace "BP", "Yamantaka"),
-# language of translation, artist- lecturer, 
-# album -  course_location
+# language of translation, artist- lecturer, album -  course_location
 # and genre - program details in respective language.
 #
 # You can add more courses if you need! Simply copy-paste one of these segments and replace all items.
@@ -26,7 +25,7 @@ nested_classes = {
 			"Monasterio Nalanda - PB"
 			],
 
-        "short_name": "BP"
+		"short_name": "BP"
 	},
 
 	"Yamantaka": {
