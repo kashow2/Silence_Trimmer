@@ -2,13 +2,15 @@
 ## Program tool to trim the silence from audio files
 ### Components
 
-- ffmpeg_trim --- python script that performs the silence trimming from audio files
-> Uses a function trim_silence which takes three arguments, the directory input folder, the directory output folder and the course associated with the audio files.
-
-- dashboard --- python script that will execute audio trimming + rendering with user input
+- dashboard --- Main python file creating a dashboard that executes audio trimming + rendering with user input
 > Creates a dashboard to prompt users to select the input folder with all audio files of interest, the output folder to save resulting files and to then trim + render audio!
+> 
 > Calls upon the trim_silence function in ffmpeg_trim
+> 
 > Uses tkinter library for the dashboard creation.
+
+- ffmpeg_trim --- python file that performs the silence trimming from audio files
+> Uses a function trim_silence which takes three arguments, the directory input folder, the directory output folder and the course associated with the audio files.
 
 - AudioTrim_Classes --- modifiable text file holding metadata information
 > Nested dictionary with information associated with the audio files desired to be trimmed.
