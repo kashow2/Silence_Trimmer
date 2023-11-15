@@ -41,7 +41,3 @@
    
 &nbsp;&nbsp;&nbsp;&nbsp; - [*On Windows*] Your Path can be found by searching Path in the Windows search bar, navigating to the Advanced tab of 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system properties and going into Environmental Variables.
-
-**4**. On both dashboard.py and ffmpeg_trim.py, you need to change the file_path variable to where you've stored the AudioTrim_Classes.txt file!
-   
-&nbsp;&nbsp;&nbsp;&nbsp; - line 11 on dashboard.py & line 12 on ffmpeg_trim.py
